@@ -5,6 +5,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {},
   },
@@ -12,7 +13,7 @@ export default {
     function ({ addUtilities }) {
       const newUtilities = {
         '::selection': {
-          backgroundColor: '#9b59b6', // Purple color
+          backgroundColor: '#7a4191', // Purple color
           color: '#ffffff',           // White text
         },
         '.scrollbar-thin': {
