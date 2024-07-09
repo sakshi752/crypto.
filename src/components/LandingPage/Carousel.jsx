@@ -10,7 +10,7 @@ const CarouselContainer = styled('div')({
   height: "50%",
   width: "70%",
   margin: "auto",
-  marginTop: "80px",
+  marginTop: "10px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -19,20 +19,18 @@ const CarouselContainer = styled('div')({
   gap: "10px",
   background: "linear-gradient(to right, #7a4191, #1E3A8A)",
   borderRadius: "10px",
-  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)", // Adding box shadow
+  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)",
 
   // Media queries for responsiveness
   '@media (max-width: 768px)': {
     width: "90%",
     marginTop: "40px",
   },
-  // '@media (max-width: 480px)': {
-  //   width: "90%",
-  // },
 });
 
 const Carousel = () => {
   const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
   const fetchTrendingCoins = async () => {
     try {
@@ -40,9 +38,11 @@ const Carousel = () => {
         'https://api.coingecko.com/api/v3/search/trending'
       );
       setCoins(data.coins);
+      setLoading(false); // Set loading to false after data is fetched
       console.log(data.coins); // Debugging step
     } catch (error) {
       console.error('Error fetching trending coins:', error);
+      setLoading(false); // Set loading to false even if there's an error
     }
   };
 
@@ -53,8 +53,8 @@ const Carousel = () => {
   const items = coins.map((coin) => (
     <Link to={`/coin/${coin.item.id}`} key={coin.item.id} className='flex items-center justify-center flex-col'>
       <motion.div
-        whileHover={{ scaleX: 1.2, }}
-        whileTap={{scale:.7}}
+        whileHover={{ scaleX: 1.2 }}
+        whileTap={{ scale: 0.7 }}
       >
         <motion.img
           src={coin.item.thumb}
@@ -71,21 +71,25 @@ const Carousel = () => {
   return (
     <CarouselContainer>
       <h1 className='text-white mb-6 text-xl font-bold tracking-widest'>Trending Coins</h1>
-      <AliceCarousel
-        mouseTracking
-        infinite
-        autoPlayInterval={1000}
-        animationDuration={1500}
-        disableDotsControls
-        disableButtonsControls
-        responsive={{
-          0: { items: 2 },
-          512: { items: 3 },
-          1024: { items: 5 }
-        }}
-        autoPlay
-        items={items}
-      />
+      {loading ? ( // Show loading message while data is being fetched
+        <p className='text-white'>Loading...</p>
+      ) : (
+        <AliceCarousel
+          mouseTracking
+          infinite
+          autoPlayInterval={1000}
+          animationDuration={1500}
+          disableDotsControls
+          disableButtonsControls
+          responsive={{
+            0: { items: 2 },
+            512: { items: 3 },
+            1024: { items: 5 }
+          }}
+          autoPlay
+          items={items}
+        />
+      )}
     </CarouselContainer>
   );
 };

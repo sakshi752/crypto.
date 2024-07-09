@@ -48,12 +48,12 @@ const HeroSection = () => {
             <div className='flex-1 flex justify-center items-end'>
                 <motion.img src={iphone}
                     alt="iPhone displaying crypto app" className='w-3/4  md:w-full max-w-md '
-                    initial={{ y: -10 }}
-                    animate={{ y: 10 }}
+                    initial={{ y: -20 }}
+                    animate={{ y: 20 }}
                     transition={{
                         type: "smooth",
                         repeatType: "mirror",
-                        duration: 1.5,
+                        duration: 1.7,
                         repeat: Infinity
                     }}
                 />

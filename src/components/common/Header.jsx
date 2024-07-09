@@ -24,9 +24,9 @@ const Header = () => {
   return (
     <>
       <div className='w-full flex justify-between items-center px-4 md:px-12 py-3 sticky top-0 left-0 bg-[#111] z-50'>
-        <h1 className='text-[1.2rem] font-bold tracking-widest text-white'>
+        <Link to={'/'} className='text-[1.2rem] font-bold tracking-widest text-white'>
           Crypto<span className='text-[#7a4191] pl-1'>.</span>
-        </h1>
+        </Link>
         <div className='flex items-center gap-5'>
           <div>
             {colorTheme === 'light' ? (
