@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import useTheme from '../../hooks/useTheme';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { FiMenu, FiX } from 'react-icons/fi';
-
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [toggleNav, setToggleNav] = useState(false);
@@ -13,7 +13,8 @@ const Header = () => {
   const toggleDarkMode = () => {
     setTheme(colorTheme);
     setDarkSide(!darkSide);
-  }
+  };
+
   const transition = {
     type: "spring",
     stiffness: 200,
@@ -28,42 +29,45 @@ const Header = () => {
         </h1>
         <div className='flex items-center gap-5'>
           <div>
-            {
-              colorTheme === 'light' ?
-                <motion.div
-                  className='cursor-pointer hidden md:block'
-                  onClick={toggleDarkMode}
-                  initial={{ scale: 0.6, rotate: 90 }}
-                  animate={{ scale: 1, rotate: 360, transition }}
-                  whileTap={{ scale: 0.9, rotate: 15 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <FaMoon className='text-xl text-white' />
-                </motion.div>
-                :
-                <motion.div
-                  className='cursor-pointer hidden md:block' onClick={toggleDarkMode} whileTap={{ scale: 0.9, rotate: 15 }} initial={{ rotate: 45 }} animate={{ rotate: 360, transition }}
-                >
-                  <FaSun className='text-xl text-white' />
-                </motion.div>
-            }
+            {colorTheme === 'light' ? (
+              <motion.div
+                className='cursor-pointer hidden md:block'
+                onClick={toggleDarkMode}
+                initial={{ scale: 0.6, rotate: 90 }}
+                animate={{ scale: 1, rotate: 360, transition }}
+                whileTap={{ scale: 0.9, rotate: 15 }}
+                transition={{ duration: 0.5 }}
+              >
+                <FaMoon className='text-xl text-white' />
+              </motion.div>
+            ) : (
+              <motion.div
+                className='cursor-pointer hidden md:block'
+                onClick={toggleDarkMode}
+                whileTap={{ scale: 0.9, rotate: 15 }}
+                initial={{ rotate: 45 }}
+                animate={{ rotate: 360, transition }}
+              >
+                <FaSun className='text-xl text-white' />
+              </motion.div>
+            )}
           </div>
 
           <div className='hidden md:flex gap-7 items-center text-gray-100 font-[400]'>
-            <a href='/watchlist' className='hover:text-white transition-colors'>
+            <Link to='/watchlist' className='hover:text-white transition-colors'>
               WatchList
-            </a>
-            <a href='/compare' className='hover:text-white transition-colors'>
+            </Link>
+            <Link to='/compare' className='hover:text-white transition-colors'>
               Compare
-            </a>
-            <motion.a
-              whileTap={{ scale: .8 }}
-              href="/dashboard"
+            </Link>
+            <motion.button
+              whileTap={{ scale: 0.8 }}
               className="inline-block px-4 py-2 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-md hover:from-[#6d3791] hover:to-[#162e6a] transition-colors"
             >
-              Dashboard
-            </motion.a>
-
+              <Link to="/dashboard">
+                Dashboard
+              </Link>
+            </motion.button>
           </div>
         </div>
         <button
@@ -77,19 +81,17 @@ const Header = () => {
         <div className='fixed top-0 left-0 right-0 bottom-0 inset-0 md:hidden bg-[#000005be] z-50' onClick={() => setToggleNav(false)}>
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`fixed w-[200px] min-h-screen px-8 top-0 right-0 pt-4 bg-[#2e2e2e] md:hidden flex flex-col space-y-5 transition-transform duration-500 ease-in-out ${toggleNav ? 'translate-x-0' : 'translate-x-full'
-              }`}
+            className={`fixed w-[200px] min-h-screen px-8 top-0 right-0 pt-4 bg-[#2e2e2e] md:hidden flex flex-col space-y-5 transition-transform duration-500 ease-in-out ${toggleNav ? 'translate-x-0' : 'translate-x-full'}`}
           >
-
-            <a href='/watchlist' className='text-gray-200 hover:text-white transition-colors'>
+            <Link to='/watchlist' className='text-gray-200 hover:text-white transition-colors'>
               WatchList
-            </a>
-            <a href='/compare' className='text-gray-200 hover:text-white transition-colors'>
+            </Link>
+            <Link to='/compare' className='text-gray-200 hover:text-white transition-colors'>
               Compare
-            </a>
-            <a href='/dashboard' className='text-gray-200 hover:text-white transition-colors'>
+            </Link>
+            <Link to='/dashboard' className='text-gray-200 hover:text-white transition-colors'>
               Dashboard
-            </a>
+            </Link>
             <button className='text-[#7C5DFA]' onClick={toggleDarkMode}>
               {colorTheme === 'light' ? <FaMoon /> : <FaSun />}
             </button>

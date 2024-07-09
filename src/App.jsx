@@ -1,16 +1,24 @@
-// src/App.js
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/common/Header";
-import { Button } from "@mui/material";
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./pages/LandingPage";
+import Coin from "./pages/Coin";
+import Dashboard from "./pages/Dashboard";
+import Watchlist from "./pages/Watchlist";
+import Compare from "./pages/Compare";
 
 function App() {
   return (
-    <div className="dark:bg-[#111] bg-[#f4f0f0] duration-300  min-h-screen w-full scrollbar-thin scrollbar-webkit tracking-wider">
-      <Header />
-      {/* <Button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Click me
-      </Button> */}
-      <LandingPage/>
+    <div className="dark:bg-[#111] bg-[#f4f0f0] duration-300 min-h-screen w-full scrollbar-thin scrollbar-webkit tracking-wider">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/coin/:id" element={<Coin />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route path="/watchlist" element={<Watchlist />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
