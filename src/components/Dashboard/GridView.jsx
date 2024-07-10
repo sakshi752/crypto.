@@ -14,19 +14,20 @@ const GridView = ({ coins }) => {
                 <p className='dark:text-white text-lg font-semibold'>{coin.name}</p>
               </div>
             </div>
-            {coin.price_change_percentage_24h > 0 ? (<div className='flex flex-col gap-3'>
-              <div className='flex items-center gap-5'>
-                <p className='text-green-500 border-2 border-green-500 px-5 py-2 text-lg font-semibold rounded-full hover:bg-green-500 hover:text-white'>+{coin.price_change_percentage_24h.toFixed(2)}%</p>
-                <p className='text-green-500 border-2 border-green-500 p-3 text-lg font-semibold rounded-full hover:bg-green-500 hover:text-white'><FaArrowTrendUp /></p>
-              </div>
-              <p className='text-lg font-bold text-green-500'>${coin.current_price}</p>
-            </div>) : (
+            {coin.price_change_percentage_24h > 0 ? (
+              <div className='flex flex-col gap-3'>
+                <div className='flex items-center gap-5'>
+                  <p className='text-green-500 border-2 border-green-500 px-5 py-2 text-lg font-semibold rounded-full hover:bg-green-500 hover:text-white'>+{coin.price_change_percentage_24h.toFixed(2)}%</p>
+                  <p className='text-green-500 border-2 border-green-500 p-3 text-lg font-semibold rounded-full hover:bg-green-500 hover:text-white'><FaArrowTrendUp /></p>
+                </div>
+                <p className='text-lg font-bold text-green-500'>${coin.current_price}</p>
+              </div>) : (
               <div className='flex flex-col gap-3'>
                 <div className='flex items-center gap-5'>
                   <p className='text-red-500 border-2 border-red-500 px-5 py-2 text-lg font-semibold rounded-full hover:bg-red-500 hover:text-white'>{coin.price_change_percentage_24h.toFixed(2)}%</p>
                   <p className='text-red-500 border-2 border-red-500 p-3 text-lg font-semibold rounded-full hover:bg-red-500 hover:text-white'><FaArrowTrendDown /></p>
                 </div>
-                <p className='text-lg font-bold text-red-500'>{coin.current_price}</p>
+                <p className='text-lg font-bold text-red-500'>${coin.current_price}</p>
               </div>
             )}
 

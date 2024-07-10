@@ -32,8 +32,7 @@ const TabsComponent = ({ coins }) => {
                 </motion.button>
             </div>
             <div>
-                <GridView coins={coins}/>
-                <ListView coins={coins}/>
+                {tab==='grid'?(<GridView coins={coins}/>):(<ListView coins={coins}/>)}
             </div>
         </div>
 
