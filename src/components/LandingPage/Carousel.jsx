@@ -21,7 +21,7 @@ const CarouselContainer = styled('div')({
   borderRadius: "10px",
   boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)",
 
-  // Media queries for responsiveness
+
   '@media (max-width: 768px)': {
     width: "90%",
     marginTop: "40px",
@@ -30,7 +30,7 @@ const CarouselContainer = styled('div')({
 
 const Carousel = () => {
   const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); 
 
   const fetchTrendingCoins = async () => {
     try {
@@ -38,11 +38,11 @@ const Carousel = () => {
         'https://api.coingecko.com/api/v3/search/trending'
       );
       setCoins(data.coins);
-      setLoading(false); // Set loading to false after data is fetched
-      console.log(data.coins); // Debugging step
+      setLoading(false); 
+  
     } catch (error) {
       console.error('Error fetching trending coins:', error);
-      setLoading(false); // Set loading to false even if there's an error
+      setLoading(false); 
     }
   };
 
