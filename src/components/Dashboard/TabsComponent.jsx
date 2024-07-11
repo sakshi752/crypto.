@@ -20,7 +20,7 @@ const TabsComponent = ({ coins }) => {
                     className={`w-1/2 pb-5 ${tab === 'grid' ? "text-[#7a4191] border-b-[3px] border-[#7a4191]" : "dark:text-white"} font-semibold text-xl`}
                     onClick={() => handleClick('grid')}
                 >
-                    Grid
+                    Grid View
                 </motion.button>
                 <motion.button
                     whileTap={{ scale: 0.9 }}
@@ -28,7 +28,7 @@ const TabsComponent = ({ coins }) => {
                     className={`w-1/2 pb-5 ${tab === 'list' ? "text-[#7a4191] border-b-[3px] border-[#7a4191]" : "dark:text-white"} font-semibold text-xl`}
                     onClick={() => handleClick('list')}
                 >
-                    List
+                    List View
                 </motion.button>
             </div>
             <div>
