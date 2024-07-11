@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import TabsComponent from '../components/Dashboard/TabsComponent'
+import Search from '../components/Dashboard/Search';
 import axios from 'axios';
 
 const Dashboard = () => {
 
   const [coins,setCoins]=useState([]);
+  const [search,setSearch]=useState("");
 
   const fetchCoins= async()=>{
         try {
@@ -17,10 +19,15 @@ const Dashboard = () => {
   }
   useEffect(()=>{
       fetchCoins()
-  },[])
+  },[]);
+
+  const handleSearch=(e)=>{
+    setSearch(e.target.value)
+  }
 
   return (
     <div>
+      <Search search={search} handleSearch={handleSearch}/>
       <TabsComponent coins={coins}/>
     </div>
   )
