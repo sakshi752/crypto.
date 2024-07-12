@@ -12,8 +12,8 @@ const Search = ({ search, handleSearch, suggestions }) => {
     }
   }, [search]);
 
-  const handleSuggestionClick = (suggestion) => {
-    handleSearch({ target: { value: suggestion.name } });
+  const handleSuggestionClick = (coinName) => {
+    handleSearch({ target: { value: coinName } });
     setShowSuggestions(false); // Hide suggestions after clicking
   };
 
@@ -36,13 +36,13 @@ const Search = ({ search, handleSearch, suggestions }) => {
               <li
                 key={index}
                 className='p-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-white'
-                onClick={() => handleSuggestionClick(suggestion)}
+                onClick={() => handleSuggestionClick(suggestion.name)}
               >
                 {suggestion.name}
               </li>
             ))
           ) : (
-            <li className='p-2'>No suggestions found</li>
+            <li className='p-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-white'>No suggestions found</li>
           )}
         </ul>
       )}

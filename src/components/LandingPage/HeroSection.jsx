@@ -1,6 +1,7 @@
 import React from 'react';
 import iphone from '../../assets/iphone.png';
 import { motion } from 'framer-motion';
+import { Link } from 'react-alice-carousel';
 
 
 const HeroSection = () => {
@@ -32,16 +33,14 @@ const HeroSection = () => {
                         className='text-gray-700 dark:text-gray-300 text-sm lg:text-lg text-center md:text-left'>
                         Track crypto through a public API in real time. Visit the dashboard to do so!
                     </motion.p>
-                    <motion.a
-                        whileTap={{ scale: .8 }}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 1 }}
-                        transition={{ duration: .5 }}
-                        href="/dashboard"
-                        className="inline-block px-6 py-3 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-md hover:from-[#6d3791] hover:to-[#162e6a] transition-colors"
+                    <motion.button
+                        whileTap={{ scale: 0.8 }}
+                        className="inline-block px-4 py-2 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-md hover:from-[#6d3791] hover:to-[#162e6a] transition-colors"
                     >
-                        Dashboard
-                    </motion.a>
+                        <Link to="/dashboard">
+                            Dashboard
+                        </Link>
+                    </motion.button>
                 </div>
             </div>
             {/* image */}
