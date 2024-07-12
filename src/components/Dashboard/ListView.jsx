@@ -4,7 +4,7 @@ import { convertNumbers } from '../../functions/convertFunction';
 
 const ListView = ({ coins }) => {
   return (
-    <div className='w-[97%] md:w-[90%] mx-auto flex flex-col gap-5 py-10'>
+    <div className='w-[97%] md:w-[90%] mx-auto flex flex-col gap-5 py-10 px-1'>
       {coins.map((coin) => {
         return (
           <div
