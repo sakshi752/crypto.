@@ -3,7 +3,6 @@ import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
 const GridView = ({ coins }) => {
   return (
-
       <div className='grid grid-cols-1 justify-center items-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 w-[85%] md:w-[90%] mx-auto py-10 px-1'>
         {coins.map(coin => (
           <div key={coin.id} className={` dark:bg-gray-800 bg-gray-300 px-5 py-4 rounded-lg shadow-lg transform transition duration-500 hover:scale-105 ${coin.price_change_percentage_24h > 0 ? "hover:border-green-500" : "hover:border-red-500"} hover:border-2 cursor-pointer flex flex-col gap-4 justify-evenly`}>
@@ -37,7 +36,6 @@ const GridView = ({ coins }) => {
           </div>
         ))}
       </div>
-
   );
 }
 

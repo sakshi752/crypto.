@@ -12,6 +12,11 @@ const Search = ({ search, handleSearch, suggestions }) => {
     }
   }, [search]);
 
+  const handleSuggestionClick = (suggestion) => {
+    handleSearch({ target: { value: suggestion.name } });
+    setShowSuggestions(false); // Hide suggestions after clicking
+  };
+
   return (
     <div className='w-full sm:w-4/5 p-3 mx-auto flex flex-col items-center mt-10 relative'>
       <div className='flex items-center w-full relative'>
@@ -25,13 +30,13 @@ const Search = ({ search, handleSearch, suggestions }) => {
         />
       </div>
       {showSuggestions && (
-        <ul className='bg-white dark:bg-gray-800 w-full mt-2 rounded-lg shadow-lg max-h-60 overflow-auto'>
+        <ul className='bg-gray-300 dark:bg-gray-800 w-full mt-2 rounded-lg shadow-lg max-h-60 overflow-auto'>
           {suggestions.length ? (
             suggestions.map((suggestion, index) => (
               <li
                 key={index}
-                className='p-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700'
-                onClick={() => handleSearch({ target: { value: suggestion.name } })}
+                className='p-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-white'
+                onClick={() => handleSuggestionClick(suggestion)}
               >
                 {suggestion.name}
               </li>
