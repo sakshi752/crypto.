@@ -20,7 +20,7 @@ const PaginationSection = ({ currentPage, totalPages, onPageChange }) => {
       {pageNumbers.map(number => (
         <button
           key={number}
-          className={`flex items-center justify-center h-8 w-8 rounded-full ${currentPage === number ? 'bg-purple-600 text-white' : 'text-black hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700'}`}
+          className={`flex items-center justify-center h-8 w-8 rounded-full ${currentPage === number ? 'bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-full hover:from-[#6d3791] hover:to-[#162e6a] transition-colors ' : 'text-black hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700'}`}
           onClick={() => onPageChange(number)}
         >
           {number}
