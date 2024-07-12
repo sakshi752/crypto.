@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GridView from './GridView';
 import ListView from './ListView'
 
-const TabsComponent = ({ coins }) => {
+const TabsComponent = ({ coins,handlePageChange }) => {
     const [tab, setTab] = useState('grid');
 
     const handleClick = (newTab) => {
+        handlePageChange(1)
         setTab(newTab);
     };
 

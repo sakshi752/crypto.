@@ -1,7 +1,7 @@
 import React from 'react';
 import iphone from '../../assets/iphone.png';
 import { motion } from 'framer-motion';
-import { Link } from 'react-alice-carousel';
+import { Link } from 'react-router-dom';
 
 
 const HeroSection = () => {

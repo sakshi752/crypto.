@@ -56,7 +56,7 @@ const Dashboard = () => {
   return (
     <div className='container mx-auto'>
       <Search search={search} handleSearch={handleSearch} suggestions={filteredSuggestions} />
-      <TabsComponent coins={currentItems} />
+      <TabsComponent coins={currentItems} handlePageChange={handlePageChange} />
       <PaginationSection
         currentPage={currentPage}
         totalPages={Math.ceil((filteredSuggestions.length ? filteredSuggestions.length : coins.length) / ITEMS_PER_PAGE)}
