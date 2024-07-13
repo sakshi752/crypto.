@@ -5,6 +5,7 @@ import axios from 'axios';
 import debounce from 'lodash.debounce';
 import PaginationSection from '../components/Dashboard/PaginationSection';
 import BackToTopBtn from '../components/Dashboard/BackToTopBtn';
+import Loader from '../components/common/Loader';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -13,13 +14,16 @@ const Dashboard = () => {
   const [search, setSearch] = useState("");
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true)
 
   const fetchCoins = async () => {
     try {
       const { data } = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
       setCoins(data);
+      setLoading(false)
     } catch (error) {
       console.log("error:", error);
+      setLoading(false)
     }
   };
 
@@ -54,17 +58,24 @@ const Dashboard = () => {
   };
 
   return (
-    <div className='container mx-auto'>
-      <Search search={search} handleSearch={handleSearch} suggestions={filteredSuggestions} />
-      <TabsComponent coins={currentItems} handlePageChange={handlePageChange} />
-      <PaginationSection
-        currentPage={currentPage}
-        totalPages={Math.ceil((filteredSuggestions.length ? filteredSuggestions.length : coins.length) / ITEMS_PER_PAGE)}
-        onPageChange={handlePageChange}
-      />
-      {/* <PaginationSec/> */}
-      <BackToTopBtn/>
-    </div>
+    <>
+      {loading ? (<Loader />) : (
+        <div className='container mx-auto'>
+
+          <Search search={search} handleSearch={handleSearch} suggestions={filteredSuggestions} />
+          <TabsComponent coins={currentItems} handlePageChange={handlePageChange} />
+          <PaginationSection
+            currentPage={currentPage}
+            totalPages={Math.ceil((filteredSuggestions.length ? filteredSuggestions.length : coins.length) / ITEMS_PER_PAGE)}
+            onPageChange={handlePageChange}
+          />
+          {/* <PaginationSec/> */}
+          <BackToTopBtn />
+        </div>
+      )}
+
+    </>
+
   );
 };
 
