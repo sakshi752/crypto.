@@ -11,7 +11,7 @@ const PaginationSection = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <div className='flex items-center justify-center space-x-1 md:space-x-2 p-2 md:p-4'>
       <button
-        className='flex items-center justify-center h-8 w-8 text-gray-500 hover:text-gray-700'
+        className='flex items-center justify-center h-8 w-8 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-full hover:from-[#6d3791] hover:to-[#162e6a] transition-colors '
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -27,7 +27,7 @@ const PaginationSection = ({ currentPage, totalPages, onPageChange }) => {
         </button>
       ))}
       <button
-        className='flex items-center justify-center h-8 w-8 text-gray-500 hover:text-gray-700'
+        className='flex items-center justify-center h-8 w-8 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-full hover:from-[#6d3791] hover:to-[#162e6a] transition-colors '
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >

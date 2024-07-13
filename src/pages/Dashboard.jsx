@@ -62,6 +62,7 @@ const Dashboard = () => {
         totalPages={Math.ceil((filteredSuggestions.length ? filteredSuggestions.length : coins.length) / ITEMS_PER_PAGE)}
         onPageChange={handlePageChange}
       />
+      {/* <PaginationSec/> */}
       <BackToTopBtn/>
     </div>
   );
