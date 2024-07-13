@@ -4,7 +4,7 @@ import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 
 const GridCard = ({coin}) => {
     return (
-        <Link to="/coin/1">
+        <Link to={`/coin/${coin.id}`}>
             <div
                 className={` dark:bg-gray-800 bg-gray-300 px-5 py-4 rounded-lg shadow-lg transform transition duration-500 hover:scale-105 ${coin.price_change_percentage_24h > 0 ? "hover:border-green-500" : "hover:border-red-500"} hover:border-2 cursor-pointer flex flex-col gap-4 justify-evenly`}>
                 <div className='flex items-center mb-4'>

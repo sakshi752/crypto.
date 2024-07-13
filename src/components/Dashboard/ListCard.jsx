@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const ListCard = ({coin}) => {
     return (
-        <Link to={'/coin/1'}>
+        <Link to={`/coin/${coin.id}`}>
             <div
                 key={coin.id}
                 className={`flex items-center justify-between cursor-pointer dark:bg-gray-800 bg-gray-300 px-5 py-4 rounded-lg shadow-lg transform transition duration-500 md:hover:scale-105 hover:border-2 ${coin.price_change_percentage_24h > 0 ? "hover:border-green-500" : "hover:border-red-500"
