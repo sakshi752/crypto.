@@ -14,21 +14,24 @@ const CoinInfoPage = () => {
   const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(30);
 
-  const fetchCoinInfo = async () => {
-    const coinData = await getCoinData(id);
-    if (coinData) {
-      coinObject(setCoinInfo, coinData);
-      const prices = await getCoinPrices(id);
-      console.log(prices);
-      setLoading(false)
-    }
-  };
+ 
 
   useEffect(() => {
     if (id) {
       fetchCoinInfo();
     }
   }, [id]);
+
+  const fetchCoinInfo = async () => {
+    const coinData = await getCoinData(id);
+    if (coinData) {
+      coinObject(setCoinInfo, coinData);
+      const prices = await getCoinPrices(id);
+      if (prices) {
+        setLoading(false)
+      } 
+    }
+  };
 
   return (
     <>
