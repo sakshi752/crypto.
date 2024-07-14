@@ -7,14 +7,14 @@ import ListCard from '../components/Dashboard/ListCard';
 import DescriptionSec from '../components/CoinInfoPage/DescriptionSec';
 import getCoinData from '../functions/getCoinData';
 import { getCoinPrices } from '../functions/getCoinPrices';
+import LineChart from '../components/CoinInfoPage/LineChart';
 
 const CoinInfoPage = () => {
   const { id } = useParams();
   const [coinInfo, setCoinInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(30);
-
- 
+  const [chartData,setChartData]=useState()
 
   useEffect(() => {
     if (id) {
@@ -40,6 +40,7 @@ const CoinInfoPage = () => {
       ) : (
         <div className='w-[97%] md:w-[94%] mx-auto flex flex-col gap-5 py-5 px-1'>
           <ListCard coin={coinInfo} />
+          {/* <LineChart/> */}
           <DescriptionSec desc={coinInfo.desc} name={coinInfo.name} />
         </div>
       )}

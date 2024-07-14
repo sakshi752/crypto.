@@ -1,4 +1,3 @@
-import { styled } from '@mui/system';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import AliceCarousel from 'react-alice-carousel';
@@ -6,31 +5,9 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-const CarouselContainer = styled('div')({
-  height: "50%",
-  width: "70%",
-  margin: "auto",
-  marginTop: "10px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "20px",
-  gap: "10px",
-  background: "linear-gradient(to right, #7a4191, #1E3A8A)",
-  borderRadius: "10px",
-  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.25)",
-
-
-  '@media (max-width: 768px)': {
-    width: "90%",
-    marginTop: "40px",
-  },
-});
-
 const Carousel = () => {
   const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   const fetchTrendingCoins = async () => {
     try {
@@ -38,11 +15,11 @@ const Carousel = () => {
         'https://api.coingecko.com/api/v3/search/trending'
       );
       setCoins(data.coins);
-      setLoading(false); 
-  
+      setLoading(false);
+
     } catch (error) {
       console.error('Error fetching trending coins:', error);
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -69,28 +46,31 @@ const Carousel = () => {
   ));
 
   return (
-    <CarouselContainer>
-      <h1 className='text-white mb-6 text-xl font-bold tracking-widest'>Trending Coins</h1>
-      {loading ? ( // Show loading message while data is being fetched
-        <p className='text-white'>Loading...</p>
-      ) : (
-        <AliceCarousel
-          mouseTracking
-          infinite
-          autoPlayInterval={1000}
-          animationDuration={1500}
-          disableDotsControls
-          disableButtonsControls
-          responsive={{
-            0: { items: 2 },
-            512: { items: 3 },
-            1024: { items: 5 }
-          }}
-          autoPlay
-          items={items}
-        />
-      )}
-    </CarouselContainer>
+
+      <div className='h-[50%] w-[90%] md:w-[70%] m-auto mt-[40px] md:mt-[10px] flex flex-col items-center justify-center p-[20px] gap-3 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white shadow-lg rounded-lg'>
+        <h1 className='text-white mb-6 text-xl font-bold tracking-widest'>Trending Coins</h1>
+        {loading ? ( 
+          <p className='text-white'>Loading...</p>
+        ) : (
+          <AliceCarousel
+            mouseTracking
+            infinite
+            autoPlayInterval={1000}
+            animationDuration={1500}
+            disableDotsControls
+            disableButtonsControls
+            responsive={{
+              0: { items: 2 },
+              512: { items: 3 },
+              1024: { items: 5 }
+            }}
+            autoPlay
+            items={items}
+          />
+        )}
+      </div>
+
+
   );
 };
 
