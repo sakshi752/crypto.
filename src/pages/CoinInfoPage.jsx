@@ -1,38 +1,47 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Loader from '../components/common/Loader';
 import { coinObject } from '../functions/coinObject';
 import ListCard from '../components/Dashboard/ListCard';
 import DescriptionSec from '../components/CoinInfoPage/DescriptionSec';
+import getCoinData from '../functions/getCoinData';
+import { getCoinPrices } from '../functions/getCoinPrices';
 
 const CoinInfoPage = () => {
   const { id } = useParams();
-  const [coinInfo, setCoinInfo] = useState();
+  const [coinInfo, setCoinInfo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [days, setDays] = useState(30);
 
   const fetchCoinInfo = async () => {
-    const { data } = await axios(`https://api.coingecko.com/api/v3/coins/${id}`)
-    coinObject(setCoinInfo,data)
-    console.log(coinInfo);
-    setLoading(false)
-  }
+    const coinData = await getCoinData(id);
+    if (coinData) {
+      coinObject(setCoinInfo, coinData);
+      const prices = await getCoinPrices(id);
+      console.log(prices);
+      setLoading(false)
+    }
+  };
+
   useEffect(() => {
-    fetchCoinInfo();
-  }, [])
+    if (id) {
+      fetchCoinInfo();
+    }
+  }, [id]);
 
   return (
     <>
-      {loading ? (<Loader />) : (
-        <div  className='w-[97%] md:w-[94%] mx-auto flex flex-col gap-5 py-5 px-1'>
-          <ListCard coin={coinInfo}/>
-          <DescriptionSec desc={coinInfo.desc}/>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className='w-[97%] md:w-[94%] mx-auto flex flex-col gap-5 py-5 px-1'>
+          <ListCard coin={coinInfo} />
+          <DescriptionSec desc={coinInfo.desc} name={coinInfo.name} />
         </div>
       )}
-
     </>
+  );
+};
 
-  )
-}
-
-export default CoinInfoPage
+export default CoinInfoPage;
