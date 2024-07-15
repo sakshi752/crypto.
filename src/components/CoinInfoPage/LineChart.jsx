@@ -28,12 +28,12 @@ const LineChart = ({ chartData }) => {
     scales: {
       x: {
         grid: {
-          color: 'rgba(200, 200, 200, 0.3)', // Change the grid color for x-axis
+          color: 'rgba(200, 200, 200, 0.2)', 
         },
       },
       y: {
         grid: {
-          color: 'rgba(200, 200, 200, 0.3)', // Change the grid color for y-axis
+          color: 'rgba(200, 200, 200, 0.2)', 
         },
       },
     },

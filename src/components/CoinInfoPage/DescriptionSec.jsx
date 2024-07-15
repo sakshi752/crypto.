@@ -23,7 +23,6 @@ const DescriptionSec = ({ name,desc }) => {
                         {readMore ? 'Read less...' : 'Read more...'}
                     </button>
                 )}
-
             </div>
 
         </div>

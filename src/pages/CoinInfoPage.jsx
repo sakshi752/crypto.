@@ -8,6 +8,7 @@ import DescriptionSec from '../components/CoinInfoPage/DescriptionSec';
 import getCoinData from '../functions/getCoinData';
 import { getCoinPrices } from '../functions/getCoinPrices';
 import LineChart from '../components/CoinInfoPage/LineChart';
+import convertDate from '../functions/convertDate';
 
 const CoinInfoPage = () => {
   const { id } = useParams();
@@ -26,23 +27,32 @@ const CoinInfoPage = () => {
   }, [id]);
 
   const fetchCoinInfo = async () => {
-    const coinData = await getCoinData(id);
-    if (coinData) {
-      coinObject(setCoinInfo, coinData);
-      const prices = await getCoinPrices(id);
-      if (prices) {
-        console.log(prices);
-        setChartData({
-          labels: prices.map(price =>new Date(price[0]).toLocaleDateString()),
-          datasets: [{
-            label: 'Price',
-            data: prices.map(price => price[1]), // Adjust according to the data structure
-            borderColor: 'rgba(75,192,192,1)',
-            backgroundColor: 'rgba(75,192,192,0.2)',
-          }]
-        });
-        setLoading(false);
-      } 
+    try {
+      const coinData = await getCoinData(id);
+      if (coinData) {
+        coinObject(setCoinInfo, coinData);
+        const prices = await getCoinPrices(id, days);
+        if (prices) {
+          setChartData({
+            labels: prices.map(price => convertDate(price[0])),
+            datasets: [
+              {
+                label: 'Price',
+                data: prices.map(price => price[1]),
+                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: 'rgba(75,192,192,0.5)',
+                fill: true,
+                tension: 0.3,
+                borderWidth: 2,
+                pointRadius: 0
+              }]
+          });
+          setLoading(false);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching coin data", error);
+      setLoading(false);
     }
   };
 
