@@ -8,9 +8,9 @@ import DescriptionSec from '../components/CoinInfoPage/DescriptionSec';
 import getCoinData from '../functions/getCoinData';
 import { getCoinPrices } from '../functions/getCoinPrices';
 import LineChart from '../components/CoinInfoPage/LineChart';
-import convertDate from '../functions/convertDate';
 import SelectDays from '../components/CoinInfoPage/SelectDays';
 import ToggleComponent from '../components/CoinInfoPage/ToggleComponent';
+import settingChartData from '../functions/settingChartData';
 
 const CoinInfoPage = () => {
   const { id } = useParams();
@@ -35,28 +35,27 @@ const CoinInfoPage = () => {
         coinObject(setCoinInfo, coinData);
         const prices = await getCoinPrices(id, days);
         if (prices) {
-          setChartData({
-            labels: prices.map(price => convertDate(price[0])),
-            datasets: [
-              {
-                label: 'Price',
-                data: prices.map(price => price[1]),
-                borderColor: '#6d3791',
-                backgroundColor: '#6d3791',
-                fill: true,
-                tension: 0.3,
-                borderWidth: 2,
-                pointRadius: 3
-              }]
-          });
+          settingChartData(setChartData, prices)
           setLoading(false);
         }
+        setLoading(false)
       }
     } catch (error) {
       console.error("Error fetching coin data", error);
       setLoading(false);
     }
   };
+
+  const handleDaysChange = async (e) => {
+    setLoading(true)
+    setDays(e.target.value);
+    console.log(e.target.value);
+    const prices = await getCoinPrices(id, e.target.value);
+    if (prices) {
+      settingChartData(setChartData, prices)
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -67,7 +66,7 @@ const CoinInfoPage = () => {
           <ListCard coin={coinInfo} />
           <div className=" dark:bg-gray-800 bg-gray-300 px-5 py-4 rounded-lg shadow-lg flex flex-col gap-10">
             <div className='flex flex-col gap-5'>
-              <SelectDays />
+              <SelectDays handleDaysChange={handleDaysChange} days={days} />
               <ToggleComponent />
             </div>
             <LineChart chartData={chartData} />
