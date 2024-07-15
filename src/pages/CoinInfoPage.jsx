@@ -9,6 +9,8 @@ import getCoinData from '../functions/getCoinData';
 import { getCoinPrices } from '../functions/getCoinPrices';
 import LineChart from '../components/CoinInfoPage/LineChart';
 import convertDate from '../functions/convertDate';
+import SelectDays from '../components/CoinInfoPage/SelectDays';
+import ToggleComponent from '../components/CoinInfoPage/ToggleComponent';
 
 const CoinInfoPage = () => {
   const { id } = useParams();
@@ -39,12 +41,12 @@ const CoinInfoPage = () => {
               {
                 label: 'Price',
                 data: prices.map(price => price[1]),
-                borderColor: 'rgba(75,192,192,1)',
-                backgroundColor: 'rgba(75,192,192,0.5)',
+                borderColor: '#6d3791',
+                backgroundColor: '#6d3791',
                 fill: true,
                 tension: 0.3,
                 borderWidth: 2,
-                pointRadius: 0
+                pointRadius: 3
               }]
           });
           setLoading(false);
@@ -63,7 +65,13 @@ const CoinInfoPage = () => {
       ) : (
         <div className='w-[97%] md:w-[94%] mx-auto flex flex-col gap-5 py-5 px-1'>
           <ListCard coin={coinInfo} />
-          <LineChart chartData={chartData} />
+          <div className=" dark:bg-gray-800 bg-gray-300 px-5 py-4 rounded-lg shadow-lg flex flex-col gap-10">
+            <div className='flex flex-col gap-5'>
+              <SelectDays />
+              <ToggleComponent />
+            </div>
+            <LineChart chartData={chartData} />
+          </div>
           <DescriptionSec desc={coinInfo.desc} name={coinInfo.name} />
         </div>
       )}

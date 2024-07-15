@@ -1,6 +1,12 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, 
+  CategoryScale, //x axis
+  LinearScale, //y axis 
+  PointElement, 
+  LineElement,
+  Title, Tooltip,  scales } from 'chart.js';
+
 
 // Register the components
 ChartJS.register(
@@ -10,17 +16,13 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+
 );
 
 const LineChart = ({ chartData }) => {
   const options = {
-    plugins: {
-      legend: {
-        display: true,
-      },
-    },
     responsive: true,
+    // maintainAspectRatio: false,
     interaction: {
       mode: 'index',
       intersect: false,
@@ -28,20 +30,21 @@ const LineChart = ({ chartData }) => {
     scales: {
       x: {
         grid: {
-          color: 'rgba(200, 200, 200, 0.2)', 
+          display: false,
         },
       },
       y: {
         grid: {
-          color: 'rgba(200, 200, 200, 0.2)', 
+          display: false,
         },
       },
     },
   };
 
   return (
-    <div className='w-full'>
-      <Line data={chartData} options={options}  className='w-full'/>
+    <div className='w-[90%] md:w-full  md:h-full'>
+
+      <Line data={chartData} options={options} />
     </div>
   );
 };
