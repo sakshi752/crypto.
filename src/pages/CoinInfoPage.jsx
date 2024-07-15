@@ -14,7 +14,10 @@ const CoinInfoPage = () => {
   const [coinInfo, setCoinInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(30);
-  const [chartData,setChartData]=useState()
+  const [chartData, setChartData] = useState({
+    labels: [],
+    datasets: []
+  });
 
   useEffect(() => {
     if (id) {
@@ -28,7 +31,17 @@ const CoinInfoPage = () => {
       coinObject(setCoinInfo, coinData);
       const prices = await getCoinPrices(id);
       if (prices) {
-        setLoading(false)
+        console.log(prices);
+        setChartData({
+          labels: prices.map(price => price[0]), // Adjust according to the data structure
+          datasets: [{
+            label: 'Price',
+            data: prices.map(price => price[1]), // Adjust according to the data structure
+            borderColor: 'rgba(75,192,192,1)',
+            backgroundColor: 'rgba(75,192,192,0.2)',
+          }]
+        });
+        setLoading(false);
       } 
     }
   };
@@ -40,7 +53,7 @@ const CoinInfoPage = () => {
       ) : (
         <div className='w-[97%] md:w-[94%] mx-auto flex flex-col gap-5 py-5 px-1'>
           <ListCard coin={coinInfo} />
-          {/* <LineChart/> */}
+          <LineChart chartData={chartData} />
           <DescriptionSec desc={coinInfo.desc} name={coinInfo.name} />
         </div>
       )}
