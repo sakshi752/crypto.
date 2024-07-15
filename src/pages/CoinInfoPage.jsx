@@ -33,7 +33,7 @@ const CoinInfoPage = () => {
       if (prices) {
         console.log(prices);
         setChartData({
-          labels: prices.map(price => price[0]), // Adjust according to the data structure
+          labels: prices.map(price =>new Date(price[0]).toLocaleDateString()),
           datasets: [{
             label: 'Price',
             data: prices.map(price => price[1]), // Adjust according to the data structure
