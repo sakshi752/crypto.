@@ -6,6 +6,7 @@ import debounce from 'lodash.debounce';
 import PaginationSection from '../components/Dashboard/PaginationSection';
 import BackToTopBtn from '../components/Dashboard/BackToTopBtn';
 import Loader from '../components/common/Loader';
+import get100Coins from '../functions/get100Coins';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -18,8 +19,9 @@ const Dashboard = () => {
 
   const fetchCoins = async () => {
     try {
-      const { data } = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd');
-      setCoins(data);
+      const myCoins=await get100Coins();
+      // console.log(myCoins);
+      setCoins(myCoins);
       setLoading(false)
     } catch (error) {
       console.log("error:", error);
