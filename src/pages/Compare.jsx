@@ -18,14 +18,14 @@ const Compare = () => {
     }
   }
 
-  console.log(coins);
+
 
   useEffect(() => {
     fetchCoins();
   },[])
 
   return (
-    <div>
+    <div className='w-[97%] md:w-[94%] mx-auto flex flex-col gap-5 py-5 px-1'>
       <SelectCoins coins={coins}/>
     </div>
   )

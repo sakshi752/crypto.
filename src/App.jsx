@@ -17,8 +17,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/coin/:id" element={<CoinInfoPage />} />
-            {/* <Route path="/compare" element={<Compare />} />
-            <Route path="/watchlist" element={<Watchlist />} /> */}
+            <Route path="/compare" element={<Compare />} />
+            <Route path="/watchlist" element={<Watchlist />} />
           </Routes>
         </div>
         <Footer />

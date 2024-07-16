@@ -54,12 +54,12 @@ const Header = () => {
           </div>
 
           <div className='hidden md:flex gap-7 items-center text-gray-100 font-[400]'>
-            {/* <Link to='/watchlist' className='hover:text-white transition-colors'>
+            <Link to='/watchlist' className='hover:text-white transition-colors'>
               WatchList
             </Link>
             <Link to='/compare' className='hover:text-white transition-colors'>
               Compare
-            </Link> */}
+            </Link>
             <motion.button
               whileTap={{ scale: 0.8 }}
               className="inline-block px-4 py-2 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-md hover:from-[#6d3791] hover:to-[#162e6a] transition-colors"
@@ -83,12 +83,12 @@ const Header = () => {
             onClick={(e) => e.stopPropagation()}
             className={`fixed w-[200px] min-h-screen px-8 top-0 right-0 pt-4 dark:bg-gray-800 bg-gray-300 text-black dark:text-white md:hidden flex flex-col space-y-5 transition-transform duration-500 ease-in-out ${toggleNav ? 'translate-x-0' : 'translate-x-full'}`}
           >
-            {/* <Link to='/watchlist' className=''>
+            <Link to='/watchlist' className=''>
               WatchList
             </Link>
             <Link to='/compare' className=''>
               Compare
-            </Link> */}
+            </Link>
             <motion.button
               whileTap={{ scale: 0.8 }}
               className="inline-block px-4 py-2 bg-gradient-to-r from-[#7a4191] to-[#1E3A8A] text-white rounded-md hover:from-[#6d3791] hover:to-[#162e6a] transition-colors"

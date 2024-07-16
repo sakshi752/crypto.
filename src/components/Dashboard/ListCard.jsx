@@ -1,10 +1,10 @@
 import React from 'react'
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
-import  convertNumbers  from '../../functions/convertFunction';
+import convertNumbers from '../../functions/convertFunction';
 import { Link } from 'react-router-dom';
 
 
-const ListCard = ({coin}) => {
+const ListCard = ({ coin }) => {
     return (
         <Link to={`/coin/${coin.id}`}>
             <div
