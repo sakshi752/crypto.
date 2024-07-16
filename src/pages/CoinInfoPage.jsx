@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/common/Loader';
@@ -21,6 +20,7 @@ const CoinInfoPage = () => {
     labels: [],
     datasets: []
   });
+  const [priceType, setPriceType] = useState("prices");
 
   useEffect(() => {
     if (id) {
@@ -33,9 +33,9 @@ const CoinInfoPage = () => {
       const coinData = await getCoinData(id);
       if (coinData) {
         coinObject(setCoinInfo, coinData);
-        const prices = await getCoinPrices(id, days);
-        if (prices) {
-          settingChartData(setChartData, prices)
+        const chartVals = await getCoinPrices(id, days,priceType);
+        if (chartVals) {
+          settingChartData(setChartData, chartVals)
           setLoading(false);
         }
         setLoading(false)
@@ -47,15 +47,19 @@ const CoinInfoPage = () => {
   };
 
   const handleDaysChange = async (e) => {
-    setLoading(true)
+    setLoading(true);
     setDays(e.target.value);
     console.log(e.target.value);
-    const prices = await getCoinPrices(id, e.target.value);
-    if (prices) {
-      settingChartData(setChartData, prices)
+    const chartVals = await getCoinPrices(id, e.target.value,priceType);
+    if (chartVals) {
+      settingChartData(setChartData, chartVals);
       setLoading(false);
     }
-  }
+  };
+
+  const handlePriceTypeChange = (newType) => {
+    setPriceType(newType);
+  };
 
   return (
     <>
@@ -64,12 +68,12 @@ const CoinInfoPage = () => {
       ) : (
         <div className='w-[97%] md:w-[94%] mx-auto flex flex-col gap-5 py-5 px-1'>
           <ListCard coin={coinInfo} />
-          <div className=" dark:bg-gray-800 bg-gray-300 px-5 py-4 rounded-lg shadow-lg flex flex-col gap-10">
+          <div className="dark:bg-gray-800 bg-gray-300 px-5 py-4 rounded-lg shadow-lg flex flex-col gap-10">
             <div className='flex flex-col gap-5'>
               <SelectDays handleDaysChange={handleDaysChange} days={days} />
-              <ToggleComponent />
+              <ToggleComponent priceType={priceType} handlePriceTypeChange={handlePriceTypeChange} />
             </div>
-            <LineChart chartData={chartData} />
+            <LineChart chartData={chartData} handlePriceTypeChange={handlePriceTypeChange} />
           </div>
           <DescriptionSec desc={coinInfo.desc} name={coinInfo.name} />
         </div>

@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const ToggleComponent = () => {
-  const [priceType, setPriceType] = useState("prices");
-
-  const handlePriceTypeChange = (newType) => {
-    setPriceType(newType);
-  };
-
+const ToggleComponent = ({ priceType, handlePriceTypeChange }) => {
   return (
     <div className="flex md:items-center justify-start md:justify-center gap-1">
       <button
