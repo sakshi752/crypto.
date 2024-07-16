@@ -60,7 +60,6 @@ const CoinInfoPage = () => {
   const handlePriceTypeChange =async (newType) => {
     setLoading(true)
     setPriceType(newType);
-    console.log(newType);
     const chartVals = await getCoinPrices(id, days,newType);
     if (chartVals) {
       settingChartData(setChartData, chartVals);
@@ -80,7 +79,7 @@ const CoinInfoPage = () => {
               <SelectDays handleDaysChange={handleDaysChange} days={days} />
               <ToggleComponent priceType={priceType} handlePriceTypeChange={handlePriceTypeChange} />
             </div>
-            <LineChart chartData={chartData} handlePriceTypeChange={handlePriceTypeChange} />
+            <LineChart chartData={chartData} priceType={priceType} />
           </div>
           <DescriptionSec desc={coinInfo.desc} name={coinInfo.name} />
         </div>

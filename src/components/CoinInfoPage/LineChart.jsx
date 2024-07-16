@@ -1,11 +1,15 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, 
+import {
+  Chart as ChartJS,
   CategoryScale, //x axis
   LinearScale, //y axis 
-  PointElement, 
+  PointElement,
   LineElement,
-  Title, Tooltip,  scales } from 'chart.js';
+  Title, Tooltip, scales
+} from 'chart.js';
+import { callback } from 'chart.js/helpers';
+import convertNumbers from '../../functions/convertFunction';
 
 
 // Register the components
@@ -19,7 +23,7 @@ ChartJS.register(
 
 );
 
-const LineChart = ({ chartData }) => {
+const LineChart = ({ chartData, priceType }) => {
   const options = {
     responsive: true,
     // maintainAspectRatio: false,
@@ -37,6 +41,16 @@ const LineChart = ({ chartData }) => {
         grid: {
           display: false,
         },
+        ticks: {
+          callback: function (value, index, ticks) {
+            if (priceType === "prices") {
+              return "$" + value.toLocaleString();
+            }
+            else {
+              return "$" + convertNumbers(value)
+            }
+          }
+        }
       },
     },
   };

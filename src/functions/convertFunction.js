@@ -1,4 +1,4 @@
-export const convertNumbers = (number) => {
+ const convertNumbers = (number) => {
     if (!number) return '';
 
     if (number < 1000) {
@@ -11,3 +11,5 @@ export const convertNumbers = (number) => {
         return (Math.floor(number / 100000000) / 10) + "B";
     }
 }
+
+export default convertNumbers

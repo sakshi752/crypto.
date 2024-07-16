@@ -1,4 +1,5 @@
 import convertDate from "./convertDate";
+import convertNumbers from "./convertFunction";
 
 const settingChartData=(setChartData,prices)=>{
     setChartData({
@@ -6,7 +7,7 @@ const settingChartData=(setChartData,prices)=>{
         datasets: [
           {
             label: 'Price',
-            data: prices.map(price => price[1]),
+            data: prices.map(price =>price[1]),
             borderColor: '#6d3791',
             backgroundColor: '#6d3791',
             fill: true,
