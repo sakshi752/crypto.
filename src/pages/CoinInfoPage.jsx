@@ -57,8 +57,15 @@ const CoinInfoPage = () => {
     }
   };
 
-  const handlePriceTypeChange = (newType) => {
+  const handlePriceTypeChange =async (newType) => {
+    setLoading(true)
     setPriceType(newType);
+    console.log(newType);
+    const chartVals = await getCoinPrices(id, days,newType);
+    if (chartVals) {
+      settingChartData(setChartData, chartVals);
+      setLoading(false);
+    }
   };
 
   return (
