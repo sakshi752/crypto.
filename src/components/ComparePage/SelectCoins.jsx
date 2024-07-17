@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-const SelectCoins = ({ coins }) => {
-    const [crypto1, setCrypto1] = useState("bitcoin");
-    const [crypto2, setCrypto2] = useState("ethereum");
+const SelectCoins = ({ coins,crypto1, setCrypto1,crypto2, setCrypto2 }) => {
+    
     const handleCoinChange = (e, isCoin2) => {
         if (isCoin2) {
             setCrypto2(e.target.value);
