@@ -1,11 +1,12 @@
 import React from 'react';
 
-const SelectDays = ({ handleDaysChange, days }) => {
+const SelectDays = ({ handleDaysChange, days, isComparePage }) => {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4  dark:bg-gray-800 rounded-lg">
-      <h1 className="text-lg text-gray-900 dark:text-gray-100 font-semibold">
+    <div className={`flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 p-4   rounded-lg ${isComparePage ? "dark:bg-gray-800" : "bg-none"}`}>
+      {isComparePage && <h1 className="text-lg text-gray-900 dark:text-gray-100 font-semibold">
         Price Change in last
-      </h1>
+      </h1>}
+
       <select
         name="days"
         id="days"
