@@ -7,6 +7,7 @@ import getCoinData from '../functions/getCoinData';
 import { coinObject } from '../functions/coinObject';
 import { getCoinPrices } from '../functions/getCoinPrices';
 import settingChartData from '../functions/settingChartData';
+import ListCard from '../components/Dashboard/ListCard';
 
 const Compare = () => {
   const [coins, setCoins] = useState([]);
@@ -39,7 +40,7 @@ const Compare = () => {
     const coinData1 = await getCoinData(crypto1);
     const coinData2 = await getCoinData(crypto2);
     if (coinData1) {
-      coinObject(setCrypto1, coinData1);
+      coinObject(setCrypto1Data, coinData1);
       setLoading(false)
     }
     if (coinData2) {
@@ -50,7 +51,9 @@ const Compare = () => {
       const chartVals2 = await getCoinPrices(crypto2, days, "prices");
       if (chartVals1 && chartVals2) {
         // settingChartData(setChartData, chartVals)
+        console.log("crypto1",crypto1Data);
         console.log("prices1", chartVals1);
+        console.log("crypto2",crypto2Data);
         console.log("prices2", chartVals2);
         setLoading(false);
       }
@@ -63,7 +66,7 @@ const Compare = () => {
       try {
         const coinData = await getCoinData(e.target.value);
         if (coinData) {
-          coinObject(setCrypto2, coinData);
+          coinObject(setCrypto2Data, coinData);
           const chartVals = await getCoinPrices(e.target.value, days, "prices");
           if (chartVals) {
             // settingChartData(setChartData, chartVals)
@@ -80,7 +83,7 @@ const Compare = () => {
       try {
         const coinData = await getCoinData(e.target.value);
         if (coinData) {
-          coinObject(setCrypto1, coinData);
+          coinObject(setCrypto1Data, coinData);
           const chartVals = await getCoinPrices(e.target.value, days, "prices");
           if (chartVals) {
             // settingChartData(setChartData, chartVals)
@@ -99,6 +102,8 @@ const Compare = () => {
     setDays(e.target.value);
 
   }
+  // console.log(crypto1Data);
+  // console.log(crypto2Data);
 
   return (
     <>
@@ -109,6 +114,10 @@ const Compare = () => {
           <div className="w-full mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between py-5 px-4 dark:bg-gray-800 bg-gray-300 rounded-lg shadow-lg gap-4">
             <SelectCoins coins={coins} crypto1={crypto1} crypto2={crypto2} setCrypto1={setCrypto1} setCrypto2={setCrypto2} handleCoinChange={handleCoinChange} />
             <SelectDays days={days} isComparePage={false} handleDaysChange={handleDaysChange} />
+          </div>
+          <div className='flex flex-col gap-5'>
+            <ListCard coin={crypto1Data}/>
+            <ListCard coin={crypto2Data}/>
           </div>
         </div>
 
