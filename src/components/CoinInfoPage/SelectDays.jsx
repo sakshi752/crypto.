@@ -6,7 +6,7 @@ const SelectDays = ({ handleDaysChange, days, isComparePage }) => {
       {isComparePage && <h1 className="text-lg text-gray-900 dark:text-gray-100 font-semibold">
         Price Change in last
       </h1>}
-
+      
       <select
         name="days"
         id="days"

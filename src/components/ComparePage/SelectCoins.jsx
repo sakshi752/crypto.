@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 
-const SelectCoins = ({ coins, crypto1, setCrypto1, crypto2, setCrypto2 }) => {
-  const handleCoinChange = (e, isCoin2) => {
-    if (isCoin2) {
-      setCrypto2(e.target.value);
-    } else {
-      setCrypto1(e.target.value);
-    }
-  };
+const SelectCoins = ({ coins, crypto1, crypto2, handleCoinChange }) => {
+
 
   return (
     <div className="flex gap-4">
-      <div className="flex flex-col md:flex-row items-center gap-3">
-        <p className="text-black dark:text-white hidden md:block">Crypto 1</p>
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
+        <p className="text-black dark:text-white block">Crypto 1</p>
         <select
           name="crypto1"
           id="crypto1"
@@ -28,8 +22,8 @@ const SelectCoins = ({ coins, crypto1, setCrypto1, crypto2, setCrypto2 }) => {
           ))}
         </select>
       </div>
-      <div className="flex flex-col md:flex-row items-center gap-3">
-        <p className="text-black dark:text-white hidden md:block">Crypto 2</p>
+      <div className="flex flex-col md:flex-row md:items-center gap-3">
+        <p className="text-black dark:text-white block">Crypto 2</p>
         <select
           name="crypto2"
           id="crypto2"
