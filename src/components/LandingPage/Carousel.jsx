@@ -34,6 +34,7 @@ const Carousel = () => {
         whileTap={{ scale: 0.7 }}
       >
         <motion.img
+        draggable="false"
           src={coin.item.thumb}
           className='mb-2'
           alt={coin.item.name}

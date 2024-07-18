@@ -48,6 +48,7 @@ const HeroSection = () => {
                 <motion.img src={iphone}
                     alt="iPhone displaying crypto app" className='w-3/4  md:w-full max-w-md '
                     initial={{ y: -20 }}
+                    draggable="false"
                     animate={{ y: 20 }}
                     transition={{
                         type: "smooth",
